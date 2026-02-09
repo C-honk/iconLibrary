@@ -1,6 +1,6 @@
 {
   "name": "策略图标",
-  "description": "更新于2026.2.9",
+  "description": "更新于 2026.2.9",
   "icons": [
     {
       "name": "HK",
@@ -35,7 +35,7 @@
       "url": "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/02ProxySoftLogo/quanx(2).png"
     },
     {
-      "name": "globe",
+      "name": "Globe",
       "url": "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/05icon/quanqiu(1).png"
     },
     {
@@ -43,7 +43,7 @@
       "url": "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/google(1).png"
     },
     {
-      "name": "Gemnin",
+      "name": "Gemini",
       "url": "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/gemini(1).png"
     },
     {
