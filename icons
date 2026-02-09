@@ -1,6 +1,6 @@
 {
   "name": "策略图标",
-  "description": "更新于2026.2.8",
+  "description": "更新于2026.2.9",
   "icons": [
     {
       "name": "HK",
@@ -53,6 +53,26 @@
     {
       "name": "Telegram",
       "url": "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/telegram(1).png"
-    }  
+    },
+    {
+      "name": "Apple",
+      "url": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple_1.png"
+    },
+    {
+      "name": "CloudMusic",
+      "url": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Netease_Music.png"
+    },
+    {
+      "name": "iCloud",
+      "url": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/iCloud.png"
+    },
+    {
+      "name": "YouTube",
+      "url": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube.png"
+    },
+    {
+      "name": "YouTubeMusic",
+      "url": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube_Music.png"
+    }
   ]
 }
