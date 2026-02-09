@@ -1,0 +1,26 @@
+{
+  "name": "SF Symbols 策略图标",
+  "description": "更新于2026.2.9",
+  "icons": [
+    { "name": "GLOBAL", "url": "sf://globe" },
+    { "name": "PROXY", "url": "sf://arrow.triangle.branch" },
+    { "name": "DIRECT", "url": "sf://arrow.forward.circle" },
+    { "name": "REJECT", "url": "sf://xmark.circle" },
+
+    { "name": "MEDIA", "url": "sf://play.rectangle" },
+    { "name": "MUSIC", "url": "sf://music.note" },
+    { "name": "VIDEO", "url": "sf://film" },
+
+    { "name": "CHAT", "url": "sf://bubble.left.and.bubble.right" },
+    { "name": "AI", "url": "sf://sparkles" },
+    { "name": "SEARCH", "url": "sf://magnifyingglass" },
+
+    { "name": "APPLE", "url": "sf://apple.logo" },
+    { "name": "ICLOUD", "url": "sf://icloud" },
+    { "name": "SYSTEM", "url": "sf://gearshape" },
+
+    { "name": "DOWNLOAD", "url": "sf://arrow.down.circle" },
+    { "name": "UPLOAD", "url": "sf://arrow.up.circle" },
+    { "name": "NETWORK", "url": "sf://network" }
+  ]
+}
