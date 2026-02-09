@@ -1,0 +1,58 @@
+{
+  "name": "策略图标",
+  "description": "更新于2026.2.8",
+  "icons": [
+    {
+      "name": "HK",
+      "url": "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/01Country/Hongkong.png"
+    },
+    {
+      "name": "JP",
+      "url": "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/01Country/Japan(3).png"
+    },
+    {
+      "name": "SG",
+      "url": "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/01Country/singapore(1).png"
+    },
+    {
+      "name": "TW",
+      "url": "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/01Country/taiwan(3).png"
+    },
+    {
+      "name": "US",
+      "url": "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/01Country/US.png"
+    },
+    {
+      "name": "Egern",
+      "url": "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/02ProxySoftLogo/Egern.png"
+    },
+    {
+      "name": "Loon",
+      "url": "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/02ProxySoftLogo/Loon.png"
+    },
+    {
+      "name": "QuantumultX",
+      "url": "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/02ProxySoftLogo/quanx(2).png"
+    },
+    {
+      "name": "Google",
+      "url": "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/google(1).png"
+    },
+    {
+      "name": "Gemnin",
+      "url": "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/gemini(1).png"
+    },
+    {
+      "name": "Emby",
+      "url": "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/emby.png"
+    },
+    {
+      "name": "Spotify",
+      "url": "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/spotify(green)(1).png"
+    },
+    {
+      "name": "Telegram",
+      "url": "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/telegram(1).png"
+    }  
+  ]
+}
