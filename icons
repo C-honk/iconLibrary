@@ -1,6 +1,6 @@
 {
   "name": "策略图标",
-  "description": "更新于 2026.2.9",
+  "description": "更新于 2026.2.10",
   "icons": [
     {
       "name": "HK",
@@ -77,6 +77,30 @@
     {
       "name": "YouTubeMusic",
       "url": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube_Music.png"
+    },
+    {
+      "name": "Aout",
+      "url": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"
+    },
+    {
+      "name": "AdBlock",
+      "url": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Advertising.png"
+    },
+    {
+      "name": "BiliBili",
+      "url": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/bilibili_3.png"
+    },
+    {
+      "name": "ChatGPT",
+      "url": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/ChatGPT.png"
+    },
+    {
+      "name": "Reject",
+      "url": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Reject.png"
+    },
+    {
+      "name": "TikTok",
+      "url": "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/tiktok((2).png"
     }
   ]
 }
