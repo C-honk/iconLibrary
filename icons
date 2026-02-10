@@ -101,6 +101,10 @@
     {
       "name": "TikTok",
       "url": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok_2.png"
+    },
+    {
+      "name": "X",
+      "url": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/X.png"
     }
   ]
 }
