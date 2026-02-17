@@ -1,9 +1,0 @@
-#!desc = 提供查看节点入口和落地信息
-#!icon = https://img.freepik.com/premium-vector/ip-address-point-locator-online-privacy-anonymity-vector-illustration-symbol-element_660702-417.jpg?w=360
-#!date = 2026.2.18
-
-[Argument]
-mask = switch, false, true, tag = IP隐藏
-
-[Script]
-generic script-path=https://github.com/C-honk/iconLibrary/raw/refs/heads/main/Ip.js, tag=IP信息, img-url=globe.asia.australia.fill, argument=[{mask}]
