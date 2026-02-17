@@ -1,32 +1,36 @@
 /*
- * IP信息查询脚本 - 兼容 Loon 参数模板
- * 参数配置示例: argument=[{mask}]
+ * IP信息查询脚本 - 增强参数兼容版
  */
 
-// --- 参数解析优化 ---
+// --- 1. 深度解析参数 (关键修改) ---
 let shouldMask = false;
 if (typeof $argument !== "undefined" && $argument !== null) {
-    // 兼容你配置中的 [{mask}] 格式，即解析 [true] 或 [false]
-    if ($argument.includes("true")) {
+    // 打印日志到 Loon -> 脚本 -> 日志，方便你排查到底传了什么
+    console.log(`[IP查询] 原始参数内容: "${$argument}"`);
+    
+    // 移除非法字符（如空格、中括号），统一转小写判断
+    const cleanArg = $argument.toLowerCase().replace(/[\[\]\s]/g, "");
+    if (cleanArg === "true" || cleanArg.includes("mask=true")) {
         shouldMask = true;
     }
 }
+console.log(`[IP查询] 最终隐藏开关状态: ${shouldMask}`);
 
 const scriptName = "IP信息查询";
 
-// --- IP 遮蔽函数 ---
+// --- 2. IP 遮蔽逻辑 ---
 const maskIp = (ip) => {
     if (!shouldMask || !ip) return ip;
     if (ip.includes('.')) {
-        return ip.replace(/\.(\d+)$/, (match, p1) => "." + "*".repeat(p1.length));
+        return ip.replace(/\.(\d+)$/, ".***");
     }
     if (ip.includes(':')) {
-        return ip.replace(/:([0-9a-fA-F]+)$/, (match, p1) => ":" + "*".repeat(p1.length));
+        return ip.replace(/:([0-9a-fA-F]+)$/, ":****");
     }
     return ip;
 };
 
-// --- 国家代码映射 ---
+// --- 国家映射 ---
 const countryMap = {
     "HK": "香港", "TW": "台湾", "KR": "韩国", "JP": "日本",
     "DE": "德国", "FR": "法国", "GB": "英国", "US": "美国",
@@ -48,34 +52,27 @@ const countryMap = {
     let landingHtml = "";
     let errorLogs = [];
 
-    // 1. 查询落地位置 (通过代理)
+    // 落地 IP 请求
     try {
         const landingInfo = await new Promise((resolve, reject) => {
-            const timer = setTimeout(() => reject(new Error("连接超时")), 5000);
+            const timer = setTimeout(() => reject(new Error("Timeout")), 5000);
             $httpClient.get({ url: "http://ipinfo.io/json", node: nodeName }, (err, resp, body) => {
                 clearTimeout(timer);
-                if (err) return reject(new Error("请求失败"));
-                try { resolve(JSON.parse(body)); } 
-                catch { resolve({}); }
+                if (err) return reject(new Error("Failed"));
+                try { resolve(JSON.parse(body)); } catch { resolve({}); }
             });
         });
 
         if (landingInfo?.ip) {
-            let countryName = countryMap[landingInfo.country] || landingInfo.country || landingInfo.region || "未知";
-            landingHtml = 
-                `IP：${maskIp(landingInfo.ip)}<br>` +
-                `所在地：${countryName}<br>` +
-                `${landingInfo.org ? `运营商：${landingInfo.org.replace(/^AS\d+\s*/, "")}<br>` : ""}`;
+            let countryName = countryMap[landingInfo.country] || landingInfo.country || "未知";
+            landingHtml = `IP：${maskIp(landingInfo.ip)}<br>所在地：${countryName}<br>${landingInfo.org ? `运营商：${landingInfo.org.replace(/^AS\d+\s*/, "")}<br>` : ""}`;
         }
-    } catch (err) {
-        errorLogs.push(`落地查询: ${err.message}`);
-    }
+    } catch (err) { errorLogs.push(`落地: ${err.message}`); }
 
-    // 2. 查询入口位置 (直连解析)
+    // 入口 IP 请求
     try {
         let entryIp = nodeAddress;
         const isIp = /^(\d{1,3}\.){3}\d{1,3}$/.test(nodeAddress) || /:/.test(nodeAddress);
-        
         if (!isIp) {
             const dnsRes = await new Promise((resolve) => {
                 $httpClient.get({ url: `http://223.5.5.5/resolve?name=${nodeAddress}&type=A&short=1` }, (err, resp, body) => {
@@ -87,39 +84,26 @@ const countryMap = {
         }
 
         const entryInfo = await new Promise((resolve, reject) => {
-            const timer = setTimeout(() => reject(new Error("连接超时")), 5000);
             $httpClient.get({ url: `http://api-v3.speedtest.cn/ip?ip=${entryIp}`, node: "DIRECT" }, (err, resp, body) => {
-                clearTimeout(timer);
-                if (err) return reject(new Error("请求失败"));
-                try { resolve(JSON.parse(body)); } 
-                catch { resolve({}); }
+                if (err) return reject(new Error("Failed"));
+                try { resolve(JSON.parse(body)); } catch { resolve({}); }
             });
         });
 
         if (entryInfo?.data) {
             const d = entryInfo.data;
-            const isp = d.isp || d.operator || "未知";
-            const location = (d.province || "") + (d.city || "");
-            
-            entryHtml = 
-                `IP：${maskIp(entryIp)}<br>` +
-                `所在地：${location || "未知"}<br>` +
-                `运营商：${isp}<br>`;
+            entryHtml = `IP：${maskIp(entryIp)}<br>所在地：${(d.province || "") + (d.city || "")}<br>运营商：${d.isp || ""}<br>`;
         }
-    } catch (err) {
-        errorLogs.push(`入口查询: ${err.message}`);
-    }
+    } catch (err) { errorLogs.push(`入口: ${err.message}`); }
 
-    // 3. 构建 HTML 输出
     const html = `
-        <p style="text-align:center; font-family:-apple-system; font-size:14px; line-height:1.5;">
+        <p style="text-align:center; font-family:-apple-system; font-size:14px; line-height:1.4;">
             <br>
-            ${entryHtml ? `<span style="color:#FF9500; font-weight:bold;">◈ 入口位置</span><br>${entryHtml}<br>` : ""}
-            ${landingHtml ? `<span style="color:#007AFF; font-weight:bold;">◈ 落地位置</span><br>${landingHtml}<br>` : ""}
-            <span style="color:#8E8E93; font-size:12px;">选中节点 ➞ ${nodeName}</span><br>
-            ${errorLogs.length ? `<br><span style="color:#FF3B30; font-size:12px;">${errorLogs.join(" | ")}</span>` : ""}
+            ${entryHtml ? `<span style="color:orange;">入口位置</span><br>${entryHtml}<br>` : ""}
+            ${landingHtml ? `<span style="color:#007AFF;">落地位置</span><br>${landingHtml}<br>` : ""}
+            <span style="color:gray; font-size:12px;">节点: ${nodeName}</span>
+            ${errorLogs.length ? `<br><span style="color:red; font-size:10px;">${errorLogs.join(" ")}</span>` : ""}
         </p>`;
 
     $done({ title: scriptName, htmlMessage: html });
-
 })();
